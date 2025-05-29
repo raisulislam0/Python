@@ -1,29 +1,55 @@
-sentence = "(){}{}[]"
+sentence = "()()"
 sentence_list = list(sentence)
 latest = 0
 stack = []
 
 if len(sentence_list) & 1:
-    print("Invalid")
-    stack.append(1)
-else:
-    for i in range(len(sentence_list)):
-        print(stack)
-        if stack:
-            latest = stack[-1]
-        stack.append(sentence_list[i])
+    print("false")
+    exit()
+
+closing = (')', ']', '}')
+opening = ('(', '[', '{')
+
+if sentence_list[0] in closing:
+    print("false")
+    exit()
+    
+if sentence_list[-1] in opening:
+    print("false")
+    exit()
+    
+for i in range(len(sentence_list)):
+    print(stack)
+    print(i)
+    
+    if stack:
+        latest = stack[-1]
         
-        if latest == '(' and stack[-1] == ')':
+    stack.append(sentence_list[i])
+    
+    if latest == '(' and stack[-1] == ')':
+        try:
             stack.pop()
             stack.pop()
-        if latest == '{' and stack[-1] == '}':
+        except:
+            print("false")
+            exit()
+    if latest == '{' and stack[-1] == '}':
+        try:
             stack.pop()
             stack.pop()
-        if latest == '[' and stack[-1] == ']':
+        except:
+            print("false")
+            exit()
+    if latest == '[' and stack[-1] == ']':
+        try:
             stack.pop()
             stack.pop()
-        
+        except:
+            print("false")
+            exit()
+   
 if len(stack) == 0:
-    print("Valid")
+    print("true")
 else:
-    print("Invalid")
+    print("false")
