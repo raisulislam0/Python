@@ -1,3 +1,4 @@
+#pip install pymupdf
 import fitz  # PyMuPDF
 
 doc = fitz.open("ReDoc.pdf")
